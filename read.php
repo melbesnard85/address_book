@@ -58,32 +58,29 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="mt-5 mb-3">View address</h1>
-                    <div class="form-group">
-                        <label>Name</label>
-                        <p><b><?php echo $row["name"]; ?></b></p>
-                    </div>
-                    <div class="form-group">
-                        <label>First name</label>
-                        <p><b><?php echo $row["first_name"]; ?></b></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <p><b><?php echo $row["email"]; ?></b></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Street</label>
-                        <p><b><?php echo $row["street"]; ?></b></p>
-                    </div>
-                    <div class="form-group">
-                        <label>Zipcode</label>
-                        <p><b><?php echo $row["zipcode"]; ?></b></p>
-                    </div>
-                    <div class="form-group">
-                        <label>City</label>
-                        <p><b><?php echo $row["city"]; ?></b></p>
-                    </div>
-                    <p><a href="index.php" class="btn btn-primary">Back</a></p>
+                    <h1 class="mt-5 mb-3"><i class="fa fa-address-card-o" aria-hidden="true"></i> View address</h1>
+
+                    <div class="mt-4 card read">
+                        <!-- <img class="card-img-top" src="http://www.orseu-concours.com/451-615-thickbox/selor-test-de-raisonnement-abstrait-niveau-a.jpg" alt="Company logo"> -->
+                        <div class="card-body">
+                        <h5 class="card-title">View address</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-success"><i class="fa fa-user"></i>  <?php echo $row["name"]; ?></li>
+                            <li class="list-group-item list-group-item-success"><i class="fa fa-user"></i>  <?php echo $row["first_name"]; ?></li>
+                            <li class="list-group-item list-group-item-success"><i class="fa fa-envelope" style="font-size:17px;"></i>  <?php echo $row["email"]; ?></li>
+                            <li class="list-group-item list-group-item-success"><i class="fa fa-street-view"></i>  <?php echo $row["street"]; ?></li>
+                            <li class="list-group-item list-group-item-success"><i class="fa fa-map-pin"></i>  <?php echo $row["zipcode"]; ?></li>
+                            <li class="list-group-item list-group-item-success"><i class="fa fa-map-marker"></i>  <?php echo $row["city"]; ?></li>
+                        </ul>
+                        </div>
+                        <!-- <div class="card-footer">
+                        <button type="button" class="btn" id="left-panel-link" >Register</button>
+                        <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal3" id="right-panel-link">
+                        Learn More
+                        </button>
+                        </div> -->
+                    </div><br>
+                    <p class="text-right"><a href="index.php" class="btn btn-primary">Back</a></p>
                 </div>
             </div>        
         </div>
