@@ -2,7 +2,7 @@
 require_once "../config/env.php";
 
 ## Fetch records
-$empQuery = "select * from contacts";
+$empQuery = "select  contacts.id, contacts.name, contacts.first_name, contacts.email, contacts.street, contacts.zipcode, cities.name as city from contacts INNER JOIN cities ON contacts.city_id=cities.id";
 $empRecords = mysqli_query($link, $empQuery);
 $data = array();
 
@@ -17,13 +17,5 @@ while ($row = mysqli_fetch_assoc($empRecords)) {
         "city"=>$row['city']
     );
 }
-
-// ## Response
-// $response = array(
-//     "draw" => intval($draw),
-//     "iTotalRecords" => $totalRecords,
-//     "iTotalDisplayRecords" => $totalRecordwithFilter,
-//     "aaData" => $data
-// );
 
 echo json_encode($data);

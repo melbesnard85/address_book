@@ -8,8 +8,9 @@ $(document).ready(function () {
         'ajax': {
             'url': './services/index.service.php'
         },
+        'order': [[0, 'desc']],
         'columns': [
-            { title: 'Id', data: 'id' },
+            { title: 'Id', data: 'id', visible: false },
             { title: 'Name', data: 'name' },
             { title: 'First name', data: 'first_name' },
             { title: 'Email', data: 'email' },

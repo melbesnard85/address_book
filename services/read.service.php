@@ -5,7 +5,8 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
     require_once "config/env.php";
     
     // Prepare a select statement
-    $sql = "SELECT * FROM contacts WHERE id = ?";
+    // $sql = "SELECT * FROM contacts WHERE id = ?";
+    $sql = "SELECT contacts.id, contacts.name, contacts.first_name, contacts.email, contacts.street, contacts.zipcode, cities.name as city FROM contacts INNER JOIN cities ON contacts.city_id=cities.id WHERE contacts.id = ?";
     
     if($stmt = mysqli_prepare($link, $sql)){
         // Bind variables to the prepared statement as parameters

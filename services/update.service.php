@@ -2,6 +2,18 @@
 // Include config file
 require_once "./config/env.php";
 require_once "./common/global.php";
+
+// Get city array
+$cityQuery = "select id, name from cities";
+$cityRecords = mysqli_query($link, $cityQuery);
+$cities = array();
+
+while ($cityRow = mysqli_fetch_assoc($cityRecords)) {
+    $cities[] = array(
+        "id"=>$cityRow['id'],
+        "name"=>$cityRow['name'],
+    );
+}
  
 // Processing form data when form is submitted
 if(isset($_POST["id"]) && !empty($_POST["id"])){
@@ -13,11 +25,11 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Check input errors before inserting in database
     if(empty($name_err) && empty($first_name_err) && empty($email_err) && empty($street_err) && empty($zipcode_err) && empty($city_err)){
         // Prepare an update statement
-        $sql = "UPDATE contacts SET name=?, first_name=?, email=?, street=?, zipcode=?, city=? WHERE id=?";
+        $sql = "UPDATE contacts SET name=?, first_name=?, email=?, street=?, zipcode=?, city_id=? WHERE id=?";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssssssi", $param_name, $param_first_name, $param_email, $param_street, $param_zipcode, $param_city, $param_id);
+            mysqli_stmt_bind_param($stmt, "sssssii", $param_name, $param_first_name, $param_email, $param_street, $param_zipcode, $param_city, $param_id);
             
             // Set parameters
             $param_name = $name;
@@ -74,7 +86,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                     $email = $row["email"];
                     $street = $row["street"];
                     $zipcode = $row["zipcode"];
-                    $city = $row["city"];
+                    $city = $row["city_id"];
                 } else{
                     // URL doesn't contain valid id. Redirect to error page
                     header("location: error.php");

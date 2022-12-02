@@ -41,10 +41,21 @@
                                 <span class="invalid-feedback"><?php echo $zipcode_err;?></span>
                             </div>
                             <div class="form-group">
-                                <label>City</label>
-                                <input type="text" name="city" class="form-control <?php echo (!empty($city_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $city; ?>">
+                                <label>City </label>
+                                <select name="city" id="city" class="form-control <?php echo (!empty($city_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $city; ?>">
+                                    <?php
+                                        if (!empty($cities)) {
+                                            $options = '';
+                                            foreach($cities as $city) {
+                                                $options .= "<option value='" . $city['id'] . "'>" . $city['name'] . "</option>";
+                                            }
+                                            echo $options;
+                                        }
+                                    ?>
+                                </select>
                                 <span class="invalid-feedback"><?php echo $city_err;?></span>
                             </div>
+
                             <input type="submit" class="btn btn-primary" value="Submit">
                             <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
                         </form>
@@ -54,4 +65,11 @@
             </div>        
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $("#city").on('click', function () {
+                
+            })
+        })
+    </script>
 <?php require_once "./layouts/footer.php";?>

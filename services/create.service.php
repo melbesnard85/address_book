@@ -3,6 +3,18 @@
     require_once "./config/env.php";
     require_once "./common/global.php";
 
+    // Get city array
+    $cityQuery = "select id, name from cities";
+    $cityRecords = mysqli_query($link, $cityQuery);
+    $cities = array();
+
+    while ($cityRow = mysqli_fetch_assoc($cityRecords)) {
+        $cities[] = array(
+            "id"=>$cityRow['id'],
+            "name"=>$cityRow['name'],
+        );
+    }
+
     // Processing form data when form is submitted
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -11,12 +23,11 @@
         // Check input errors before inserting in database
         if(empty($name_err) && empty($first_name_err) && empty($email_err) && empty($street_err) && empty($zipcode_err) && empty($city_err)){
             // Prepare an insert statement
-            $sql = "INSERT INTO contacts (name, first_name, email, street, zipcode, city) VALUES (?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO contacts (name, first_name, email, street, zipcode, city_id) VALUES (?, ?, ?, ?, ?, ?)";
             
             if($stmt = mysqli_prepare($link, $sql)){
-                // echo "name : ". $name . "first_name : ". $first_name . "email : ". $email . "street : ". $street . "zipcode : ". $zipcode . "city : ". $city;
                 // Bind variables to the prepared statement as parameters
-                mysqli_stmt_bind_param($stmt, "ssssss", $param_name, $param_first_name, $param_email, $param_street, $param_zipcode, $param_city);
+                mysqli_stmt_bind_param($stmt, "sssssi", $param_name, $param_first_name, $param_email, $param_street, $param_zipcode, $param_city);
                 
                 // Set parameters
                 $param_name = $name;
