@@ -1,4 +1,4 @@
-<?php require_once "layouts/head.php";?>
+<?php require_once "./layouts/head.php";?>
 
 <style>
     .wrapper{
@@ -37,4 +37,4 @@
 
 <script src="./assets/js/index.js"></script>
 
-<?php require_once "layouts/footer.php";?>
+<?php require_once "./layouts/footer.php";?>

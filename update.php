@@ -1,4 +1,4 @@
-<?php require_once "services/update.service.php";?>
+<?php require_once "./services/update.service.php";?>
  
 <?php require_once "layouts/head.php";?>
     <style>

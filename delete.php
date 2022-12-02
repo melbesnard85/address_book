@@ -1,6 +1,6 @@
-<?php require_once "services/delete.service.php";?>
+<?php require_once "./services/delete.service.php";?>
 
-<?php require_once "layouts/head.php";?>
+<?php require_once "./layouts/head.php";?>
     <style>
         .wrapper{
             max-width: 600px;
@@ -25,4 +25,4 @@
             </div>        
         </div>
     </div>
-<?php require_once "layouts/footer.php";?>
+<?php require_once "./layouts/footer.php";?>
