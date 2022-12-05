@@ -65,11 +65,4 @@
             </div>        
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            $("#city").on('click', function () {
-                
-            })
-        })
-    </script>
 <?php require_once "./layouts/footer.php";?>
