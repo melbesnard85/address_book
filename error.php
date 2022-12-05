@@ -1,4 +1,4 @@
-<?php require_once "layouts/head.php";?>
+<?php require_once "./layouts/head.php";?>
     <div class="wrapper">
         <div class="container-fluid">
             <div class="row">
@@ -9,4 +9,4 @@
             </div>        
         </div>
     </div>
-<?php require_once "layouts/footer.php";?>
+<?php require_once "./layouts/footer.php";?>

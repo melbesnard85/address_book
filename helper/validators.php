@@ -3,8 +3,6 @@
     $input_name = trim($_POST["name"]);
     if(empty($input_name)){
         $name_err = "Please enter a name.";
-    } elseif(!filter_var($input_name, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-        $name_err = "Please enter a valid name.";
     } else{
         $name = $input_name;
     }
@@ -12,9 +10,7 @@
     // Validate first_name
     $input_first_name = trim($_POST["first_name"]);
     if(empty($input_first_name)){
-        $first_name_err = "Please enter a first_name.";
-    } elseif(!filter_var($input_first_name, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-        $first_name_err = "Please enter a valid first_name.";
+        $first_name_err = "Please enter a first name.";
     } else{
         $first_name = $input_first_name;
     }
@@ -52,13 +48,3 @@
     } else{
         $city = $input_city;
     }
-    
-    // // Validate salary
-    // $input_salary = trim($_POST["salary"]);
-    // if(empty($input_salary)){
-    //     $salary_err = "Please enter the salary amount.";     
-    // } elseif(!ctype_digit($input_salary)){
-    //     $salary_err = "Please enter a positive integer value.";
-    // } else{
-    //     $salary = $input_salary;
-    // }
