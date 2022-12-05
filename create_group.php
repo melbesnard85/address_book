@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="mt-5 mb-3"><i class="fa fa-address-card-o" aria-hidden="true"></i> Create address</h1>
+                    <h1 class="mt-5 mb-3"><i class="fa fa-address-card-o" aria-hidden="true"></i> Create a group</h1>
                     <div class="mt-4 card read">
                         <div class="card-body">
                         <h5 class="card-title">Please fill this form and submit to create a group to the database.</h5>
