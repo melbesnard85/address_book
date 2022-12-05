@@ -11,10 +11,7 @@ define('DB_PASSWORD', '');
 define('DB_NAME', 'addressbook');
 ```
 
-### Please create new db and tables env.php
+### Please migrate and seed db using .sql file
 
-Create new db using this query
-```
-    CREATE DATABASE IF NOT EXISTS addressbook;
-```
-Migrate tables and seed data using sql file(addressbook.sql) in tables
+- Create db and migrate tables using addressbook_migration.sql
+- Seed test data using addressbook_db_seed.sql

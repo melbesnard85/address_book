@@ -13,8 +13,8 @@
 
  Date: 03/12/2022 02:31:50
 */
-CREATE DATABASE IF NOT EXISTS addressbooks CHARACTER SET utf8mb4;
-USE addressbooks;
+CREATE DATABASE IF NOT EXISTS addressbook CHARACTER SET utf8mb4;
+USE addressbook;
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
