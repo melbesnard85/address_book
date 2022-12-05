@@ -17,6 +17,7 @@ $(document).ready(function () {
             { title: 'Street', data: 'street' },
             { title: 'Zipcode', data: 'zipcode' },
             { title: 'City', data: 'city' },
+            { title: 'Groups', data: 'groups' },
             {
                 title: 'Action', data: 'city', render: function (data, type, row) {
                     return `<a href="read.php?id=` + row['id'] + `" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>
