@@ -21,8 +21,8 @@
             <div class="col-md-12">
                 <div class="mt-5 mb-3 clearfix">
                     <h2 class="pull-left">Address book</h2>
-                    
                     <a href="create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Address</a>
+                    <a href="create_group.php" class="btn btn-primary mr-2 pull-right"><i class="fa fa-plus"></i> Create group</a>
                 </div>
                 <table id="myTable" class="display"></table> <br>
                 
