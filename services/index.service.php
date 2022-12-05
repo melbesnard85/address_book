@@ -13,9 +13,8 @@ $searchValue = mysqli_real_escape_string($link,$_POST['search']['value']); // Se
 ## Search 
 $searchQuery = " ";
 if($searchValue != ''){
-	$searchQuery = " and (name like '%".$searchValue."%' or 
-        first_name like '%".$searchValue."%' or 
-        city like'%".$searchValue."%' ) ";
+	$searchQuery = " and (contacts.name like '%".$searchValue."%' or 
+        first_name like '%".$searchValue."%' ) ";
 }
 
 ## Total number of records without filtering
@@ -29,7 +28,7 @@ $records = mysqli_fetch_assoc($sel);
 $totalRecordwithFilter = $records['allcount'];
 
 ## Fetch records
-$empQuery = "select * from contacts WHERE 1 ".$searchQuery." order by ".$columnName." ".$columnSortOrder." limit ".$row.",".$rowperpage;
+$empQuery = "select contacts.id, contacts.name, contacts.first_name, contacts.email, contacts.street, contacts.zipcode, cities.name as city FROM contacts INNER JOIN cities ON contacts.city_id=cities.id WHERE 1 ".$searchQuery." order by ".$columnName." ".$columnSortOrder." limit ".$row.",".$rowperpage;
 $empRecords = mysqli_query($link, $empQuery);
 $data = array();
 
