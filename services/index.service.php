@@ -28,7 +28,7 @@ $records = mysqli_fetch_assoc($sel);
 $totalRecordwithFilter = $records['allcount'];
 
 ## Fetch records
-$empQuery = "select contacts.id, contacts.name, contacts.first_name, contacts.email, contacts.street, contacts.zipcode, contacts.group_ids as groups, cities.name as city FROM contacts INNER JOIN cities ON contacts.city_id=cities.id WHERE 1 ".$searchQuery." order by ".$columnName." ".$columnSortOrder." limit ".$row.",".$rowperpage;
+$empQuery = "select contacts.id, contacts.name, contacts.first_name, contacts.email, contacts.street, contacts.zipcode, contacts.group_id as groups, cities.name as city FROM contacts INNER JOIN cities ON contacts.city_id=cities.id WHERE 1 ".$searchQuery." order by ".$columnName." ".$columnSortOrder." limit ".$row.",".$rowperpage;
 $empRecords = mysqli_query($link, $empQuery);
 $data = array();
 
