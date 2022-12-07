@@ -1,32 +1,92 @@
 $(document).ready(function () {
-    $('#myTable').DataTable({
-        'processing': true,
-        'serverSide': true,
-        'serverMethod': 'post',
-        'responsive': true,
-        'scrollY': 'auto',
-        'ajax': {
-            'url': './services/index.service.php'
-        },
-        'order': [[0, 'desc']],
-        'columns': [
-            { title: 'Id', data: 'id', visible: false },
-            { title: 'Name', data: 'name' },
-            { title: 'First name', data: 'first_name' },
-            { title: 'Email', data: 'email' },
-            { title: 'Street', data: 'street' },
-            { title: 'Zipcode', data: 'zipcode' },
-            { title: 'City', data: 'city' },
-            {
-                title: 'Action', data: 'city', render: function (data, type, row) {
-                    return `<a href="read.php?id=` + row['id'] + `" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>
-                        <a href="update.php?id=`+ row['id'] + `" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>
-                        <a href="delete.php?id=`+ row['id'] + `" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>`;
-                }
+    let datatable = null;
+    let selectedGroupId = 0;
+    $("#group_tree").jstree({
+        "core": {
+            "themes": {
+                "responsive": false
             },
-        ]
-
+            "check_callback": true,
+            'data': {
+                'url': function (node) {
+                    return './services/group_data.php';
+                },
+                'data': function (node) {
+                    return {
+                        'parent': node.id
+                    };
+                }
+            }
+        },
+        "types": {
+            "default": {
+                "icon": "fa fa-folder text-primary"
+            },
+            "file": {
+                "icon": "fa fa-file  text-primary"
+            }
+        },
+        "state": {
+            "key": "demo3"
+        },
+        "plugins": ["dnd", "state", "types"]
     });
+
+    $('#group_tree').on('changed.jstree', function (e, data) {
+        let ids = [];
+        var selectedNode = $("#group_tree").jstree("get_selected");
+        var node_info = $('#group_tree').jstree("get_node", selectedNode[0]);
+        ids = node_info.children_d;
+        if (ids) {
+            if (ids[ids.length - 1] != selectedNode[0]) ids.push(selectedNode[0]);
+            // set address title
+            $("#tb_title")[0].innerText = node_info.text;
+            selectedGroupId = selectedNode[0];
+            // draw datatable
+            DrawTable(ids);
+        }
+    }).jstree();
+
+    function DrawTable(g_ids = [1]) {
+        if (!datatable) {
+            datatable = $('#address_tbl').DataTable({
+                'processing': true,
+                'serverSide': true,
+                'serverMethod': 'post',
+                'responsive': true,
+                'scrollY': 'auto',
+                'ajax': {
+                    'url': './services/index.service.php?group_ids=' + g_ids.join(','),
+                },
+                'order': [[0, 'desc']],
+                'columns': [
+                    { title: 'Id', data: 'id', visible: false, searchable: false },
+                    { title: 'Name', data: 'name' },
+                    { title: 'First name', data: 'first_name' },
+                    { title: 'Email', data: 'email' },
+                    { title: 'Street', data: 'street' },
+                    { title: 'Zipcode', data: 'zipcode' },
+                    { title: 'City', data: 'city' },
+                    { title: 'Groups', data: 'groups' },
+                    {
+                        title: 'Action', orderable: false, searchable: false, render: function (data, type, row) {
+                            return `<a href="read.php?id=` + row['id'] + `" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>
+                                <a href="update.php?id=`+ row['id'] + `" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>
+                                <a href="delete.php?id=`+ row['id'] + `" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>`;
+                        }
+                    },
+                ]
+
+            });
+        } else {
+            datatable.ajax.url('./services/index.service.php?group_ids=' + g_ids.join(','));
+            datatable.ajax.reload();
+        }
+    }
+
+    $("#add_address").on('click', function () {
+        location.href = "create.php?group_id=" + selectedGroupId;
+    })
 
     $("#export_json").on('click', function () {
         $.ajax({
@@ -81,5 +141,4 @@ $(document).ready(function () {
         var xml = `<?xml version="1.0" encoding="utf-8"?>` + xml.replace(/<\/?[0-9]{1,}>/g, '');
         return xml
     }
-
 });

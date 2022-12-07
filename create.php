@@ -14,7 +14,7 @@
                     <div class="mt-4 card read">
                         <div class="card-body">
                         <h5 class="card-title">Please fill this form and submit to add address to the database.</h5>
-                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?group_id=" . $groupId; ?>" method="post">
                             <div class="form-group">
                                 <label>Name</label>
                                 <input type="text" name="name" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>">
@@ -55,7 +55,6 @@
                                 </select>
                                 <span class="invalid-feedback"><?php echo $city_err;?></span>
                             </div>
-
                             <input type="submit" class="btn btn-primary" value="Submit">
                             <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
                         </form>
@@ -65,11 +64,4 @@
             </div>        
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            $("#city").on('click', function () {
-                
-            })
-        })
-    </script>
 <?php require_once "./layouts/footer.php";?>

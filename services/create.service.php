@@ -15,6 +15,8 @@
         );
     }
 
+    $groupId = $_GET["group_id"];
+
     // Processing form data when form is submitted
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -23,11 +25,11 @@
         // Check input errors before inserting in database
         if(empty($name_err) && empty($first_name_err) && empty($email_err) && empty($street_err) && empty($zipcode_err) && empty($city_err)){
             // Prepare an insert statement
-            $sql = "INSERT INTO contacts (name, first_name, email, street, zipcode, city_id) VALUES (?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO contacts (name, first_name, email, street, zipcode, city_id, group_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
             
             if($stmt = mysqli_prepare($link, $sql)){
                 // Bind variables to the prepared statement as parameters
-                mysqli_stmt_bind_param($stmt, "sssssi", $param_name, $param_first_name, $param_email, $param_street, $param_zipcode, $param_city);
+                mysqli_stmt_bind_param($stmt, "sssssii", $param_name, $param_first_name, $param_email, $param_street, $param_zipcode, $param_city, $param_group_id);
                 
                 // Set parameters
                 $param_name = $name;
@@ -36,6 +38,7 @@
                 $param_street = $street;
                 $param_zipcode = $zipcode;
                 $param_city = $city;
+                $param_group_id = $groupId;
                 
                 // Attempt to execute the prepared statement
                 if(mysqli_stmt_execute($stmt)){

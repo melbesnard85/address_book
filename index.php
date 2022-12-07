@@ -2,7 +2,7 @@
 
 <style>
     .wrapper{
-        width: 70%;
+        width: 80%;
         margin: 0 auto;
     }
     table tr td:last-child{
@@ -18,20 +18,24 @@
 <div class="wrapper">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
-                <div class="mt-5 mb-3 clearfix">
-                    <h2 class="pull-left">Address book</h2>
-                    
-                    <a href="create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Address</a>
+            <div class="col-md-4">
+                <div class="mt-5 mb-4 clearfix">
+                    <h2 class="text-uppercase">Groups</h2>
                 </div>
-                <table id="myTable" class="display"></table> <br>
-                
+                <div id="group_tree"></div>
+            </div>
+            <div class="col-md-8">
+                <div class="mt-5 mb-4 clearfix">
+                    <h2 id="tb_title" class="pull-left text-uppercase">Address book</h2>
+                    <a id="add_address" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Address</a>
+                </div>
+                <table id="address_tbl" class="display"></table> <br>
+                <div class="flex">
+                    <button id="export_json" class="btn btn-primary">Export JSON</button>
+                    <button id="export_xml" class="btn btn-primary">Export XML</button>
+                </div>
             </div>
         </div>        
-        <div class="flex">
-            <button id="export_json" class="btn btn-primary">Export JSON</button>
-            <button id="export_xml" class="btn btn-primary">Export XML</button>
-        </div>
     </div>
 </div>
 
