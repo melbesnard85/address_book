@@ -2,7 +2,7 @@
 
 <style>
     .wrapper{
-        width: 70%;
+        width: 80%;
         margin: 0 auto;
     }
     table tr td:last-child{
@@ -27,7 +27,7 @@
             <div class="col-md-8">
                 <div class="mt-5 mb-4 clearfix">
                     <h2 id="tb_title" class="pull-left text-uppercase">Address book</h2>
-                    <a href="create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Address</a>
+                    <a id="add_address" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Address</a>
                 </div>
                 <table id="address_tbl" class="display"></table> <br>
                 <div class="flex">
