@@ -2,7 +2,7 @@
 require_once "../config/env.php";
 
 ## Fetch records
-$empQuery = "select  contacts.id, contacts.name, contacts.first_name, contacts.email, contacts.street, contacts.zipcode, cities.name as city from contacts INNER JOIN cities ON contacts.city_id=cities.id";
+$empQuery = "select  contacts.id, contacts.name, contacts.first_name, contacts.email, contacts.street, contacts.zipcode, contacts.group_id as groups, cities.name as city from contacts INNER JOIN cities ON contacts.city_id=cities.id";
 $empRecords = mysqli_query($link, $empQuery);
 $data = array();
 
@@ -14,7 +14,8 @@ while ($row = mysqli_fetch_assoc($empRecords)) {
         "email"=>$row['email'],
         "street"=>$row['street'],
         "zipcode"=>$row['zipcode'],
-        "city"=>$row['city']
+        "city"=>$row['city'],
+        "groups"=>$row['groups']
     );
 }
 
