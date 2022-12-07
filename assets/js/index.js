@@ -1,5 +1,6 @@
 $(document).ready(function () {
     let datatable = null;
+    let selectedGroupId = 0;
     $("#group_tree").jstree({
         "core": {
             "themes": {
@@ -37,9 +38,10 @@ $(document).ready(function () {
         var node_info = $('#group_tree').jstree("get_node", selectedNode[0]);
         ids = node_info.children_d;
         if (ids) {
-            if (ids[ids.length-1] != selectedNode[0]) ids.push(selectedNode[0]);
+            if (ids[ids.length - 1] != selectedNode[0]) ids.push(selectedNode[0]);
             // set address title
             $("#tb_title")[0].innerText = node_info.text;
+            selectedGroupId = selectedNode[0];
             // draw datatable
             DrawTable(ids);
         }
@@ -58,7 +60,7 @@ $(document).ready(function () {
                 },
                 'order': [[0, 'desc']],
                 'columns': [
-                    { title: 'Id', data: 'id', visible: false },
+                    { title: 'Id', data: 'id', visible: false, searchable: false },
                     { title: 'Name', data: 'name' },
                     { title: 'First name', data: 'first_name' },
                     { title: 'Email', data: 'email' },
@@ -67,7 +69,7 @@ $(document).ready(function () {
                     { title: 'City', data: 'city' },
                     { title: 'Groups', data: 'groups' },
                     {
-                        title: 'Action', data: 'city', render: function (data, type, row) {
+                        title: 'Action', orderable: false, searchable: false, render: function (data, type, row) {
                             return `<a href="read.php?id=` + row['id'] + `" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>
                                 <a href="update.php?id=`+ row['id'] + `" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>
                                 <a href="delete.php?id=`+ row['id'] + `" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>`;
@@ -81,6 +83,10 @@ $(document).ready(function () {
             datatable.ajax.reload();
         }
     }
+
+    $("#add_address").on('click', function () {
+        location.href = "create.php?group_id=" + selectedGroupId;
+    })
 
     $("#export_json").on('click', function () {
         $.ajax({
