@@ -10,6 +10,9 @@ $columnName = $_POST['columns'][$columnIndex]['data']; // Column name
 $columnSortOrder = $_POST['order'][0]['dir']; // asc or desc
 $searchValue = mysqli_real_escape_string($link,$_POST['search']['value']); // Search value
 
+$group_ids = $_GET['group_ids'];
+// echo $group_id; exit;
+
 ## Search 
 $searchQuery = " ";
 if($searchValue != ''){
@@ -28,7 +31,7 @@ $records = mysqli_fetch_assoc($sel);
 $totalRecordwithFilter = $records['allcount'];
 
 ## Fetch records
-$empQuery = "select contacts.id, contacts.name, contacts.first_name, contacts.email, contacts.street, contacts.zipcode, contacts.group_id as groups, cities.name as city FROM contacts INNER JOIN cities ON contacts.city_id=cities.id WHERE 1 ".$searchQuery." order by ".$columnName." ".$columnSortOrder." limit ".$row.",".$rowperpage;
+$empQuery = "select contacts.id, contacts.name, contacts.first_name, contacts.email, contacts.street, contacts.zipcode, contacts.group_id as groups, cities.name as city FROM contacts INNER JOIN cities ON contacts.city_id=cities.id WHERE contacts.group_id in (".$group_ids . ")" . $searchQuery." order by ".$columnName." ".$columnSortOrder." limit ".$row.",".$rowperpage;
 $empRecords = mysqli_query($link, $empQuery);
 $data = array();
 
