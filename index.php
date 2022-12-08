@@ -1,28 +1,15 @@
-<?php require_once "./layouts/head.php";?>
-
-<style>
-    .wrapper{
-        width: 80%;
-        margin: 0 auto;
-    }
-    table tr td:last-child{
-        width: 120px;
-    }
-</style>
-<script>
-    $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();   
-    });
-</script>
-
+<?php require_once(dirname(__FILE__) . './services/group.service.php');?>
+<?php require_once(dirname(__FILE__) . './layouts/head.php');?>
 <div class="wrapper">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-md-4">
                 <div class="mt-5 mb-4 clearfix">
                     <h2 class="text-uppercase">Groups</h2>
                 </div>
-                <div id="group_tree"></div>
+                <div id="container" role="main">
+                    <div id="group_tree"></div>
+                </div>
             </div>
             <div class="col-md-8">
                 <div class="mt-5 mb-4 clearfix">
@@ -40,5 +27,13 @@
 </div>
 
 <script src="./assets/js/index.js"></script>
+<script>
+	$(function () {
+		$(window).resize(function () {
+			var h = Math.max($(window).height() - 0, 420);
+			$('.wrapper').height(h).filter('.default').css('lineHeight', h + 'px');
+		}).resize();
+	});
+</script>
+<?php require_once(dirname(__FILE__) . "./layouts/footer.php");?>
 
-<?php require_once "./layouts/footer.php";?>

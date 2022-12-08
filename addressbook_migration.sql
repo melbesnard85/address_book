@@ -11,7 +11,7 @@
  Target Server Version : 100427
  File Encoding         : 65001
 
- Date: 03/12/2022 02:31:50
+ Date: 08/12/2022 10:51:21
 */
 CREATE DATABASE IF NOT EXISTS addressbook CHARACTER SET utf8mb4;
 USE addressbook;
@@ -27,7 +27,7 @@ CREATE TABLE `cities`  (
   `id` int(12) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for contacts
@@ -41,7 +41,32 @@ CREATE TABLE `contacts`  (
   `street` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `zipcode` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `city_id` int(12) NULL DEFAULT NULL,
+  `group_id` int(12) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 57 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for group_data
+-- ----------------------------
+DROP TABLE IF EXISTS `group_data`;
+CREATE TABLE `group_data`  (
+  `id` int(10) UNSIGNED NOT NULL,
+  `nm` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for group_struct
+-- ----------------------------
+DROP TABLE IF EXISTS `group_struct`;
+CREATE TABLE `group_struct`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `lft` int(10) UNSIGNED NOT NULL,
+  `rgt` int(10) UNSIGNED NOT NULL,
+  `lvl` int(10) UNSIGNED NOT NULL,
+  `pid` int(10) UNSIGNED NOT NULL,
+  `pos` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
