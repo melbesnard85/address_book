@@ -21,7 +21,7 @@
                 margin: 0 auto;
             }
         </style>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+        <link rel="stylesheet" href="./assets/css/style.min.css" />
+        <script src="./assets/js/jstree.min.js"></script>
     </head>
     <body>
