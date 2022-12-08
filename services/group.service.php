@@ -1,7 +1,7 @@
 <?php
 require_once(dirname(__FILE__) . "../../config/env.php");
-require_once(dirname(__FILE__) . './class.db.php');
-require_once(dirname(__FILE__) . './class.tree.php');
+require_once(dirname(__FILE__) . './db.service.php');
+require_once(dirname(__FILE__) . './tree.service.php');
 
 if(isset($_GET['operation'])) {
 	$fs = new tree(db::get('mysqli://'.DB_USERNAME.'@'.DB_SERVER.'/'.DB_NAME.''), array('structure_table' => 'group_struct', 'data_table' => 'group_data', 'data' => array('nm')));

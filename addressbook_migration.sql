@@ -11,7 +11,7 @@
  Target Server Version : 100427
  File Encoding         : 65001
 
- Date: 08/12/2022 10:51:21
+ Date: 09/12/2022 02:16:22
 */
 CREATE DATABASE IF NOT EXISTS addressbook CHARACTER SET utf8mb4;
 USE addressbook;
