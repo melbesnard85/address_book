@@ -1,8 +1,9 @@
 <?php
 require_once "../config/env.php";
 
-## Fetch records
-$empQuery = "select  contacts.id, contacts.name, contacts.first_name, contacts.email, contacts.street, contacts.zipcode, contacts.group_id as groups, cities.name as city from contacts INNER JOIN cities ON contacts.city_id=cities.id";
+$group_ids = $_GET['group_ids'];
+## Fetch records to donwload
+$empQuery = "select  contacts.id, contacts.name, contacts.first_name, contacts.email, contacts.street, contacts.zipcode, group_data.nm as group_name, cities.name as city from contacts INNER JOIN cities ON contacts.city_id=cities.id INNER JOIN group_data ON contacts.group_id=group_data.id WHERE contacts.group_id in (". $group_ids . ")";
 $empRecords = mysqli_query($link, $empQuery);
 $data = array();
 
@@ -15,7 +16,7 @@ while ($row = mysqli_fetch_assoc($empRecords)) {
         "street"=>$row['street'],
         "zipcode"=>$row['zipcode'],
         "city"=>$row['city'],
-        "groups"=>$row['groups']
+        "group"=>$row['group_name']
     );
 }
 
