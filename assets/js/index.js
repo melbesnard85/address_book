@@ -17,7 +17,14 @@ $(document).ready(function () {
             }
         },
         'force_text' : true,
-        'plugins' : ['state','dnd','contextmenu','wholerow']
+        'plugins' : ['state','dnd','contextmenu','wholerow'],
+        "contextmenu":{
+            'items' : function(node) {
+                var items = $.jstree.defaults.contextmenu.items();
+                items.ccp = false;
+                return items;
+            }
+        },
     })
     .on('delete_node.jstree', function (e, data) {
         $.get('?operation=delete_node', { 'id' : data.node.id })
@@ -45,23 +52,6 @@ $(document).ready(function () {
             .fail(function () {
                 data.instance.refresh();
             });
-    })
-    .on('copy_node.jstree', function (e, data) {
-        $.get('?operation=copy_node', { 'id' : data.original.id, 'parent' : data.parent, 'position' : data.position })
-            .always(function () {
-                data.instance.refresh();
-            });
-    })
-    .on('changed.jstree', function (e, data) {
-        if(data && data.selected && data.selected.length) {
-            $.get('?operation=get_content&id=' + data.selected.join(':'), function (d) {
-                $('#data .default').text(d.content).show();
-            });
-        }
-        else {
-            $('#data .content').hide();
-            $('#data .default').text('Select a file from the tree.').show();
-        }
     })
     .on('select_node.jstree', function (e, data) {
         var selectedNode = $("#group_tree").jstree("get_selected");
