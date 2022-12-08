@@ -3,7 +3,7 @@
 <div class="wrapper">
     <div class="container-fluid">
         <div class="row mt-4">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="mt-5 mb-4 clearfix">
                     <h2 class="text-uppercase">Groups</h2>
                 </div>
@@ -11,7 +11,7 @@
                     <div id="group_tree"></div>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="mt-5 mb-4 clearfix">
                     <h2 id="tb_title" class="pull-left text-uppercase">Address book</h2>
                     <a id="add_address" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Address</a>

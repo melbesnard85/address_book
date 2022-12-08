@@ -6,5 +6,8 @@ html, body { background:#ebebeb; font-family:Verdana; margin:0; padding:0; }
 .bg-whitesmoke{
     background-color: whitesmoke;
 }
-.wrapper{ width: 80%; margin: 0 auto; }
+.wrapper{ width: 90%; margin: 0 auto; }
 table tr td:last-child{ width: 120px; }
+.jstree{
+    overflow-x: auto;
+}

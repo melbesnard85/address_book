@@ -11,10 +11,18 @@
  Target Server Version : 100427
  File Encoding         : 65001
 
- Date: 08/12/2022 10:51:51
+ Date: 09/12/2022 02:16:43
 */
+
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Records of cities
+-- ----------------------------
+INSERT INTO `cities` VALUES (1, 'New York');
+INSERT INTO `cities` VALUES (2, 'Tokyo');
+INSERT INTO `cities` VALUES (3, 'Paris');
 
 -- ----------------------------
 -- Records of contacts
@@ -54,4 +62,4 @@ INSERT INTO `group_struct` VALUES (5, 21, 22, 2, 3, 0);
 INSERT INTO `group_struct` VALUES (6, 15, 18, 2, 2, 1);
 INSERT INTO `group_struct` VALUES (7, 16, 17, 3, 6, 0);
 
-
+SET FOREIGN_KEY_CHECKS = 1;
