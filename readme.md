@@ -1,4 +1,4 @@
-# Address book
+# Address book app
 
 ## Database configration
 
